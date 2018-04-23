@@ -1,0 +1,26 @@
+{
+  "name": "credito",
+  "version": "1.0.0",
+  "description": "Pagina con la finalidad de promocionar restaurantes, hoteles y servicios turisticos",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "travel",
+    "hotel",
+    "wordpress",
+    "restaurantes"
+  ],
+  "author": "Daniels <daniel@aquivamos.org>",
+  "license": "MIT",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-imagemin": "^4.1.0",
+    "gulp-pug": "^3.3.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-stylus": "^2.7.0",
+    "gulp-uglify": "^3.0.0",
+    "nib": "^1.1.2"
+  }
+}
