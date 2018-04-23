@@ -1,0 +1,1 @@
+<div class="Cuenta"><div class="Cuenta-content"><div>comentarios <?php comments_template(); ?></div></div></div>
