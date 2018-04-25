@@ -29,18 +29,18 @@
                 span.Fecha <?php the_field('fecha_page'); ?>
                 span.Link
                 span.Des <?php the_field('des_page'); ?>
-                span(class!="<?php if (get_field('sumar_page') == '+') { echo 'verde'; } else { echo 'rojo'; } ?>") S/ <?php the_field('sumar_page'); ?> <?php the_field('can_page'); ?>
-                span
-                  a(href!="<?php echo get_delete_post_link(); ?> ") Borrar
+                span.Bor
+                  a(href!="<?php echo get_delete_post_link(); ?> ", title='Click para Borrar') -
+                span.Pre(class!="<?php if (get_field('sumar_page') == '+') { echo 'verde'; } else { echo 'rojo'; } ?>") S/ <?php the_field('sumar_page'); ?> <?php the_field('can_page'); ?>
               <?php endwhile;  endif; ?>
           form(action!='', id='primaryPostForm', method='post')
             div.Cuenta-input
               div.Cuenta-des
-                label Descripcion
-                input(type='text', id='des_page', name='des_page' value='')
+                label Descripcion.
+                input(type='text', id='des_page', name='des_page' value='', required)
               div.Cuenta-num
-                label Precio
-                input(type='text', id='can_page', name='can_page' value='')
+                label Precio.
+                input(type='text', id='can_page', name='can_page' value='', onkeyup='this.value=Numeros(this.value)', required)
             div
               input(type='hidden', id='id_page', name='id_page' value!='<?php echo $idvalue; ?>')
               input(type='hidden', id='fecha_page', name='fecha_page' value!="<?php echo date('j F, Y'); ?>")
@@ -48,7 +48,7 @@
             div.Cuenta-radio
               p
                 label
-                  input(type='radio', id='sumar_page', name='sumar_page', value='+')
+                  input(type='radio', id='sumar_page', name='sumar_page', value='+' required)
                   span Sumar
               p
                 label
@@ -56,5 +56,5 @@
                   span Restar
               <?php wp_nonce_field('post_nonce', 'post_nonce_field'); ?>
               input(type='hidden', id='submitted', name='submitted' value='true')
-              button.btn-large.red(type='submit') Enviar
-    footer.Layout-footer Diseñado y desarrollado por Daniel Acevedo
+              button.btn-large.red.waves-effect.waves-light(type='submit') Enviar
+    <?php include('footer.php'); ?>

@@ -12,11 +12,17 @@ main
 
 .Layout
   &-footer
-    background none
-    color black
+    background transparent
+    color #999
     text-align center
     padding 1rem 0
     font-size 0.95rem
+    & a
+      color #999
+      margin-left 0.3rem
+    & a:hover
+      color #222
+      text-decoration underline
   &-nav
     padding 0 0.8rem
     box-shadow none !important
@@ -56,7 +62,10 @@ main
     flex-direction column
   &-contenido
     flex 1 0 auto
-  &-cuenta, &-contenido, &-footer
+    display flex
+    justify-content space-between
+    flex-direction column
+  &-cuenta, &-contenido
     background white
 
 .current_page_item

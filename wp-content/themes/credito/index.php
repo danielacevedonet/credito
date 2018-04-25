@@ -23,7 +23,14 @@
     // CSS para las paginas
     if (is_page())
     {
-      require TEMPLATEPATH . '/cuenta.css';
+      if (is_user_logged_in())
+      {
+        require TEMPLATEPATH . '/cuenta.css';
+      }
+      else
+      {
+        require TEMPLATEPATH . '/home.css';
+      }
     }
     // CSS para el frente de la pagina
     else if (is_front_page())
@@ -45,7 +52,14 @@
   {
     if (is_page())
     {
-      require TEMPLATEPATH . '/cuenta.php';
+      if (is_user_logged_in())
+      {
+        require TEMPLATEPATH . '/cuenta.php';
+      }
+      else
+      {
+        require TEMPLATEPATH . '/warning.php';
+      }
     }
     else if (is_front_page())
     {
@@ -64,7 +78,7 @@
   {
     require TEMPLATEPATH . '/jquery-2.1.1.js';
     require TEMPLATEPATH . '/materialize.js';
-    require TEMPLATEPATH . '/is-home.js';
+    require TEMPLATEPATH . '/cuenta.js';
   }
 
   // Con este atraemos el layout

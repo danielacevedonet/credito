@@ -1,1 +1,1 @@
-<footer><p>Desarrollado y Diseñado por Daniel Acevedo</p></footer>
+<footer class="Layout-footer"><div>Diseñado y desarrollado por<a href="https://www.facebook.com/DanielAcevedoj/" targer="_blank" title="Conoce mas del desarrollador">Daniel Acevedo.</a></div></footer>

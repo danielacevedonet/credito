@@ -4,11 +4,11 @@
   form.Login-home#loginform(name='loginform', action!="<?php bloginfo('url'); ?>/wp-login.php", method='post')
     .Login-content
       .Login-user.input-field
-        input#user_login(type='text', name='log', value='', size='20', required='')
+        input#user_login(type='text', name='log', value='', size='20', required)
         label Usuario
       .Login-password.input-field
-        input#user_pass(type='password', name='pwd', value='', size='20', required='')
-        label Contraseña
+        input#user_pass(type='password', name='pwd', value='', size='20', required)
+        label Contraseñas
       .Login-submit.input-field
         input#rememberme(name='rememberme', type='checkbox', value='forever')
         input#wp-submit.btn-large.red.waves-effect.waves-light(type='submit', name='wp-submit', value='Acceder')

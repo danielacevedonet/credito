@@ -1,0 +1,1 @@
+<div class="Home"><div class="Home-login"><h3>No tienes permiso para ver esto</h3></div><div class="Home-creditos"><?php include('footer.php'); ?></div></div>

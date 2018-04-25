@@ -29,6 +29,8 @@
                 span.Fecha <?php the_field('fecha_page'); ?>
                 span.Cli <?php the_title(); ?>
                 span.Des <?php the_field('des_page'); ?>
-                span(class!="<?php if (get_field('sumar_page') == '+') { echo 'verde'; } else { echo 'rojo'; } ?>") S/ <?php the_field('sumar_page'); ?> <?php the_field('can_page'); ?>
+                span.Bor
+                  a(href!="<?php echo get_delete_post_link(); ?> ", title='Click para Borrar') -
+                span.Pre(class!="<?php if (get_field('sumar_page') == '+') { echo 'verde'; } else { echo 'rojo'; } ?>") S/ <?php the_field('sumar_page'); ?> <?php the_field('can_page'); ?>
               <?php endwhile;  endif; ?>
-    footer.Layout-footer Diseñado y desarrollado por Daniel Acevedo
+    <?php include('footer.php'); ?>
