@@ -1,0 +1,34 @@
+.Layout-content
+  .Layout-left
+    h3 Lista de clientes
+    <?php wp_list_pages('sort_column=menu_order&title_li='); ?>
+  .Layout-right
+   .Layout-cuenta
+   .Layout-contenido
+    .Cuenta
+      .Cuenta-content
+        h2 Ventas
+        .Cuenta-top
+          .Cuenta-left
+            p
+          .Cuenta-right
+            p.Can S/ 50.00
+        .Cuenta-bootom
+          .Cuenta-campos
+            .Cuenta-titles
+              h3.Fecha Fecha
+              h3.Cli Cliente
+              h3.Des Descripcion
+              h3.Pre Precio
+            .Cuenta-conseptos
+              //- <?php $idvalue = get_the_ID(); ?>
+              //- <?php $args = array('numberposts' => -1, 'post_type'   => 'post', 'meta_key'    => 'id_page', 'meta_value'  => $idvalue); ?>
+              //- <?php $the_query = new WP_Query( $args ); ?>
+              <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+              .Cuenta-cargos
+                span.Fecha <?php the_field('fecha_page'); ?>
+                span.Cli <?php the_title(); ?>
+                span.Des <?php the_field('des_page'); ?>
+                span(class!="<?php if (get_field('sumar_page') == '+') { echo 'verde'; } else { echo 'rojo'; } ?>") S/ <?php the_field('sumar_page'); ?> <?php the_field('can_page'); ?>
+              <?php endwhile;  endif; ?>
+    footer.Layout-footer Diseñado y desarrollado por Daniel Acevedo

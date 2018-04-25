@@ -1,6 +1,60 @@
-.Cuenta
-  .Cuenta-content
-    //- h2 Cliente: <?php the_title(); ?>
-    //- p Dirección: Bolognesi 34
-    //- p Telefono: 00000
-    div comentarios <?php comments_template(); ?>
+.Layout-content
+  .Layout-left
+    h3 Lista de clientes
+    <?php wp_list_pages('sort_column=menu_order&title_li='); ?>
+  .Layout-right
+   .Layout-cuenta
+   .Layout-contenido
+    .Cuenta
+      .Cuenta-content
+        h2 Cliente: <?php the_title(); ?>
+        .Cuenta-top
+          .Cuenta-left
+            p Dirección: <?php the_field('direccion'); ?>
+            p Telefono: <?php the_field('telefono'); ?>
+          .Cuenta-right
+            p.Can S/ 50.00
+        .Cuenta-bootom
+          .Cuenta-campos
+            .Cuenta-titles
+              h3.Fecha Fecha
+              h3.Des Descripcion
+              h3.Pre Precio
+            .Cuenta-conseptos
+              <?php $idvalue = get_the_ID(); ?>
+              <?php $args = array('numberposts' => -1, 'post_type'   => 'post', 'meta_key'    => 'id_page', 'meta_value'  => $idvalue); ?>
+              <?php $the_query = new WP_Query( $args ); ?>
+              <?php if ( $the_query->have_posts() ) : while ( $the_query->have_posts() ) : $the_query->the_post(); ?>
+              .Cuenta-cargos
+                span.Fecha <?php the_field('fecha_page'); ?>
+                span.Link
+                span.Des <?php the_field('des_page'); ?>
+                span(class!="<?php if (get_field('sumar_page') == '+') { echo 'verde'; } else { echo 'rojo'; } ?>") S/ <?php the_field('sumar_page'); ?> <?php the_field('can_page'); ?>
+                span
+                  a(href!="<?php echo get_delete_post_link(); ?> ") Borrar
+              <?php endwhile;  endif; ?>
+          form(action!='', id='primaryPostForm', method='post')
+            div.Cuenta-input
+              div.Cuenta-des
+                label Descripcion
+                input(type='text', id='des_page', name='des_page' value='')
+              div.Cuenta-num
+                label Precio
+                input(type='text', id='can_page', name='can_page' value='')
+            div
+              input(type='hidden', id='id_page', name='id_page' value!='<?php echo $idvalue; ?>')
+              input(type='hidden', id='fecha_page', name='fecha_page' value!="<?php echo date('j F, Y'); ?>")
+              input(type='hidden', id='postTitle', name='postTitle' value!="<?php the_title(); ?>")
+            div.Cuenta-radio
+              p
+                label
+                  input(type='radio', id='sumar_page', name='sumar_page', value='+')
+                  span Sumar
+              p
+                label
+                  input(type='radio', id='sumar_page', name='sumar_page', value='-')
+                  span Restar
+              <?php wp_nonce_field('post_nonce', 'post_nonce_field'); ?>
+              input(type='hidden', id='submitted', name='submitted' value='true')
+              button.btn-large.red(type='submit') Enviar
+    footer.Layout-footer Diseñado y desarrollado por Daniel Acevedo

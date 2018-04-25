@@ -1,0 +1,1 @@
+<div class="Home"><div class="Home-login"><?php include('login.php'); ?></div><div class="Home-creditos"><?php include('footer.php'); ?></div></div>
