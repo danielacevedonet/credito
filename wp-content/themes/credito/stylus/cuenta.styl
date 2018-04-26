@@ -30,14 +30,15 @@
  &-campos
    background white
    border 1px solid #e8e8e8
-   span.rojo
+   span.rojo, input:disabled.rojo
      color red
-   span.verde
+   span.verde, input:disabled.verde
      color green
+   input:disabled
+     height 22px !important
  &-titles
    background #e8e8e8
    display flex
-   // justify-content space-between
    justify-content flex-star
    padding 0.6rem
    & h3
@@ -76,6 +77,11 @@
    font-size 1rem
    border-bottom 1px solid #e8e8e8
    align-items center
+   & span.Pre span input
+     background transparet
+     border 0 !important
+     width 40px
+     margin-left 0.7rem
    & span.Pre
      width 80px
      text-align right

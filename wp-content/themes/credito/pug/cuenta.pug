@@ -13,25 +13,24 @@
             p Dirección: <?php the_field('direccion'); ?>
             p Telefono: <?php the_field('telefono'); ?>
           .Cuenta-right
-            p.Can S/ 50.00
+            p.Can#spTotal
+            a.btn-small.blue.waves-effect.waves-light(href='#!', onclick="Sumar();") Total
         .Cuenta-bootom
           .Cuenta-campos
             .Cuenta-titles
               h3.Fecha Fecha
               h3.Des Descripcion
-              h3.Pre Precio
-            .Cuenta-conseptos
-              <?php $idvalue = get_the_ID(); ?>
-              <?php $args = array('numberposts' => -1, 'post_type'   => 'post', 'meta_key'    => 'id_page', 'meta_value'  => $idvalue); ?>
-              <?php $the_query = new WP_Query( $args ); ?>
-              <?php if ( $the_query->have_posts() ) : while ( $the_query->have_posts() ) : $the_query->the_post(); ?>
+              h3.Pre Precio.
+            .Cuenta-conseptos <?php $idvalue = get_the_ID(); ?><?php $args = array('numberposts' => -1, 'post_type'   => 'post', 'meta_key'    => 'id_page', 'meta_value'  => $idvalue); ?><?php $the_query = new WP_Query( $args ); ?><?php if ( $the_query->have_posts() ) : while ( $the_query->have_posts() ) : $the_query->the_post(); ?>
               .Cuenta-cargos
                 span.Fecha <?php the_field('fecha_page'); ?>
                 span.Link
                 span.Des <?php the_field('des_page'); ?>
                 span.Bor
                   a(href!="<?php echo get_delete_post_link(); ?> ", title='Click para Borrar') -
-                span.Pre(class!="<?php if (get_field('sumar_page') == '+') { echo 'verde'; } else { echo 'rojo'; } ?>") S/ <?php the_field('sumar_page'); ?> <?php the_field('can_page'); ?>
+                span.Pre(class!="<?php if (get_field('sumar_page') == '+') { echo 'verde'; } else { echo 'rojo'; } ?>") S/
+                  span <?php the_field('sumar_page'); ?>
+                    input(class!="<?php if (get_field('sumar_page') == '+') { echo 'verde'; } else { echo 'rojo'; } ?>", id!="<?php the_field('ram_page'); ?>", type='text', value!="<?php the_field('can_page'); ?>", disabled="disabled" )
               <?php endwhile;  endif; ?>
           form(action!='', id='primaryPostForm', method='post')
             div.Cuenta-input
@@ -39,12 +38,13 @@
                 label Descripcion.
                 input(type='text', id='des_page', name='des_page' value='', required)
               div.Cuenta-num
-                label Precio.
+                label Precio. <?php the_field('code'); ?>
                 input(type='text', id='can_page', name='can_page' value='', onkeyup='this.value=Numeros(this.value)', required)
             div
               input(type='hidden', id='id_page', name='id_page' value!='<?php echo $idvalue; ?>')
               input(type='hidden', id='fecha_page', name='fecha_page' value!="<?php echo date('j F, Y'); ?>")
               input(type='hidden', id='postTitle', name='postTitle' value!="<?php the_title(); ?>")
+              input(type='hidden', id='ram_page', name='ram_page' value!="<?php echo creditoRan(); ?>")
             div.Cuenta-radio
               p
                 label
@@ -58,3 +58,5 @@
               input(type='hidden', id='submitted', name='submitted' value='true')
               button.btn-large.red.waves-effect.waves-light(type='submit') Enviar
     <?php include('footer.php'); ?>
+    script(type='text/javascript').
+      function Sumar() {<?php $args = array('numberposts' => -1, 'post_type'   => 'post', 'meta_key'    => 'id_page', 'meta_value'  => $idvalue); ?><?php $the_query = new WP_Query( $args ); ?><?php if ( $the_query->have_posts() ) : while ( $the_query->have_posts() ) : $the_query->the_post(); ?><?php the_field('ram_page'); ?> = document.getElementById('<?php the_field('ram_page'); ?>').value;<?php endwhile;  endif; ?>suma =<?php $args = array('numberposts' => -1, 'post_type'   => 'post', 'meta_key'    => 'id_page', 'meta_value'  => $idvalue); ?><?php $the_query = new WP_Query( $args ); ?><?php if ( $the_query->have_posts() ) : while ( $the_query->have_posts() ) : $the_query->the_post(); ?><?php the_field('sumar_page'); ?> parseFloat(<?php the_field('ram_page'); ?>)<?php endwhile;  endif; ?>;document.getElementById('spTotal').innerHTML = "S/ "+suma;}

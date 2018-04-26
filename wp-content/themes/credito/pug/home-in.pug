@@ -7,12 +7,13 @@
    .Layout-contenido
     .Cuenta
       .Cuenta-content
-        h2 Ventas
+        h2 Ventas a credito.
         .Cuenta-top
           .Cuenta-left
             p
           .Cuenta-right
-            p.Can S/ 50.00
+            p.Can#spTotal
+            a.btn-small.blue.waves-effect.waves-light(href='#!', onclick="Sumar();") Total
         .Cuenta-bootom
           .Cuenta-campos
             .Cuenta-titles
@@ -21,9 +22,6 @@
               h3.Des Descripcion
               h3.Pre Precio
             .Cuenta-conseptos
-              //- <?php $idvalue = get_the_ID(); ?>
-              //- <?php $args = array('numberposts' => -1, 'post_type'   => 'post', 'meta_key'    => 'id_page', 'meta_value'  => $idvalue); ?>
-              //- <?php $the_query = new WP_Query( $args ); ?>
               <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
               .Cuenta-cargos
                 span.Fecha <?php the_field('fecha_page'); ?>
@@ -31,6 +29,10 @@
                 span.Des <?php the_field('des_page'); ?>
                 span.Bor
                   a(href!="<?php echo get_delete_post_link(); ?> ", title='Click para Borrar') -
-                span.Pre(class!="<?php if (get_field('sumar_page') == '+') { echo 'verde'; } else { echo 'rojo'; } ?>") S/ <?php the_field('sumar_page'); ?> <?php the_field('can_page'); ?>
+                span.Pre(class!="<?php if (get_field('sumar_page') == '+') { echo 'verde'; } else { echo 'rojo'; } ?>") S/
+                  span <?php the_field('sumar_page'); ?>
+                    input(class!="<?php if (get_field('sumar_page') == '+') { echo 'verde'; } else { echo 'rojo'; } ?>", id!="<?php the_field('ram_page'); ?>", type='text', value!="<?php the_field('can_page'); ?>", disabled="disabled" )
               <?php endwhile;  endif; ?>
     <?php include('footer.php'); ?>
+    script(type='text/javascript').
+      function Sumar() {<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?><?php the_field('ram_page'); ?> = document.getElementById('<?php the_field('ram_page'); ?>').value;<?php endwhile;  endif; ?>suma =<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?><?php the_field('sumar_page'); ?> parseFloat(<?php the_field('ram_page'); ?>)<?php endwhile;  endif; ?>;document.getElementById('spTotal').innerHTML = "S/ "+suma;}
